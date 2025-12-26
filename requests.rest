@@ -24,6 +24,7 @@ Content-Type: application/json
 ### Update an existing Post
 PUT http://localhost:3000/post/694ea5a95aeabdf01d0cb2f0
 Content-Type: application/json
+
 {
   "content": "This is my updated second post!",
   "userCreatorID": "507f1f77bcf86cd799439011"
@@ -67,3 +68,34 @@ Content-Type: application/json
 GET http://localhost:3000/post?userCreatorID=507f1f77bcf86cd799439011
 Content-Type: application/json 
 
+### Create a new User
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "username": "liam",
+  "email": "liam@example.com",
+  "password": "securepassword123"
+}
+
+### Get a User by ID
+GET http://localhost:3000/user/694ea98f9601b7289e6190ee
+Content-Type: application/json
+
+### Get all Users
+GET http://localhost:3000/user
+Content-Type: application/json
+
+### Delete a User
+DELETE http://localhost:3000/user/694ead68f27c12702ef7159d
+Content-Type: application/json
+
+### Update an existing User
+PUT http://localhost:3000/user/694ead68f27c12702ef7159d
+Content-Type: application/json
+
+{
+  "username": "liamhemo_updated",
+  "email": "liamhemo_updated@example.com",
+  "password": "newsecurepassword456"
+}
