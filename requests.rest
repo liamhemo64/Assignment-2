@@ -1,0 +1,65 @@
+### Create a new Post
+POST http://localhost:3000/post
+Content-Type: application/json
+
+{
+  "content": "This is my first post!",
+  "userCreatorID": "507f1f77bcf86cd799439011"
+}
+
+### Create a new Comment
+POST http://localhost:3000/comment
+Content-Type: application/json
+
+{
+  "description": "This is my first comment",
+  "relatedPostID": "693f1043b9299a87701200fd",
+  "userCreatorID": "507f1f77bcf86cd799439011"
+}
+
+### Delete a Comment
+DELETE http://localhost:3000/comment/693dc45551a6131b83742a63
+Content-Type: application/json
+
+### Update an existing Post
+PUT http://localhost:3000/post/694571739bc8067f2333c640
+Content-Type: application/json
+
+{
+  "content": "This is my updated second post!",
+  "userCreatorID": "507f1f77bcf86cd799439011"
+}
+
+### Update an existing Comment
+PUT http://localhost:3000/comment/6945e8897befcb89b3bd5667?relatedPostID=694571739bc8067f2333c640
+Content-Type: application/json
+
+{
+  "description": "Thiss is my updated first comment",
+  "userCreatorID": "507f1f77bcf86cd799439011",
+  "relatedPostID": "694571739bc8067f2333c640"
+}
+
+### Get all Posts
+GET http://localhost:3000/post
+Content-Type: application/json
+
+### Get a Post by ID
+GET http://localhost:3000/post/694571739bc8067f2333c640
+Content-Type: application/json  
+
+### Get all Comments
+GET http://localhost:3000/comment
+Content-Type: application/json  
+
+### Get a Comment by ID
+GET http://localhost:3000/comment/6945e8897befcb89b3bd5667
+Content-Type: application/json 
+
+### Get all Comments by relatedPostID
+GET http://localhost:3000/comment?relatedPostID=694571739bc8067f2333c640
+Content-Type: application/json 
+
+### Get all Posts by userCreatorID
+GET http://localhost:3000/post?userCreatorID=507f1f77bcf86cd799439011
+Content-Type: application/json 
