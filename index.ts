@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 dotenv.config({ path: ".env.dev" });
 import postRoutes from "./routes/postRoutes.ts";
 import commentRoutes from "./routes/commentRoutes.ts";
+import userRoutes from "./routes/userRoutes.ts";
 
 const app = express();
 
@@ -14,6 +15,7 @@ const intApp = () => {
 
     app.use("/post", postRoutes);
     app.use("/comment", commentRoutes);
+    app.use("/user", userRoutes);
 
     const dbUri = process.env.MONGODB_URI;
     if (!dbUri) {

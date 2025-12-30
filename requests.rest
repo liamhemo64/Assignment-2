@@ -13,22 +13,26 @@ Content-Type: application/json
 
 {
   "description": "This is my first comment",
-  "relatedPostID": "693f1043b9299a87701200fd",
+  "relatedPostID": "694ea5a95aeabdf01d0cb2f0",
   "userCreatorID": "507f1f77bcf86cd799439011"
 }
 
 ### Delete a Comment
-DELETE http://localhost:3000/comment/693dc45551a6131b83742a63
+DELETE http://localhost:3000/comment/694ea6915aeabdf01d0cb2fa
 Content-Type: application/json
 
 ### Update an existing Post
-PUT http://localhost:3000/post/694571739bc8067f2333c640
+PUT http://localhost:3000/post/694ea5a95aeabdf01d0cb2f0
 Content-Type: application/json
 
 {
   "content": "This is my updated second post!",
   "userCreatorID": "507f1f77bcf86cd799439011"
 }
+
+### Delete an existing Post
+DELETE  http://localhost:3000/post/694ea6775aeabdf01d0cb2f8
+Content-Type: application/json
 
 ### Update an existing Comment
 PUT http://localhost:3000/comment/6945e8897befcb89b3bd5667?relatedPostID=694571739bc8067f2333c640
@@ -63,3 +67,37 @@ Content-Type: application/json
 ### Get all Posts by userCreatorID
 GET http://localhost:3000/post?userCreatorID=507f1f77bcf86cd799439011
 Content-Type: application/json 
+
+### Create a new User
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "username": "liam",
+  "email": "liam@example.com",
+  "profileImage": "http://example.com/images/liam.jpg",
+  "password": "securepassword123"
+}
+
+### Get a User by ID
+GET http://localhost:3000/user/694ea98f9601b7289e6190ee
+Content-Type: application/json
+
+### Get all Users
+GET http://localhost:3000/user
+Content-Type: application/json
+
+### Delete a User
+DELETE http://localhost:3000/user/694ead68f27c12702ef7159d
+Content-Type: application/json
+
+### Update an existing User
+PUT http://localhost:3000/user/694ead68f27c12702ef7159d
+Content-Type: application/json
+
+{
+  "username": "liamhemo_updated",
+  "email": "liamhemo_updated@example.com",
+  "profileImage": "http://example.com/images/liam_updated.jpg",
+  "password": "newsecurepassword456"
+}
