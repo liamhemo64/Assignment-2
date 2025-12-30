@@ -8,17 +8,14 @@ class UserController extends genericController<IUser> {
   }
 
   async update(req: Request, res: Response) {
-    // IMPORTANT: It must be '_id' because your router says "/:_id"
     const id = req.params._id;
     const { email, password, username } = req.body;
 
     try {
-      // Check if ID is missing
       if (!id) {
         return res.status(400).json({ error: "ID parameter is missing" });
       }
 
-      // 1. Check for email uniqueness (excluding current user)
       if (email) {
         const existingUser = await userModel.findOne({
           email,
@@ -30,7 +27,6 @@ class UserController extends genericController<IUser> {
         }
       }
 
-      // 2. Perform the update
       const updatedUser = await userModel
         .findByIdAndUpdate(
           id,
