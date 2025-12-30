@@ -9,7 +9,7 @@ class UserController extends genericController<IUser> {
 
   async update(req: Request, res: Response) {
     const id = req.params._id;
-    const { email, password, username } = req.body;
+    const { email, password, username, profileImage } = req.body;
 
     try {
       if (!id) {
@@ -30,7 +30,7 @@ class UserController extends genericController<IUser> {
       const updatedUser = await userModel
         .findByIdAndUpdate(
           id,
-          { email, password, username },
+          { email, password, username, profileImage },
           { new: true, runValidators: true }
         )
         .select("-password");

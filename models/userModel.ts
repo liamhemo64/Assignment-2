@@ -4,6 +4,7 @@ interface IUser {
   _id: mongoose.Types.ObjectId;
   username: string;
   email: string;
+  profileImage: string;
   password: string;
 }
 
@@ -16,6 +17,10 @@ const userSchema = new mongoose.Schema<IUser>({
     type: String,
     required: true,
     unique: true,
+  },
+  profileImage: {
+    type: String,
+    required: false,
   },
   password: {
     type: String,
