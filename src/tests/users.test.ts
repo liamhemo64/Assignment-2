@@ -51,15 +51,7 @@ describe("User API Endpoints", () => {
       expect(res.body.email).toBe(data.email);
     }
   });
-  // test("should create a new user", async () => {
-  //   for (const data of testData) {
-  //     const res = await request(app).post("/user").send(data);
-  //     expect(res.statusCode).toEqual(201);
-  //     expect(res.body).toHaveProperty("_id"); // Mongoose usually returns '_id', not 'id'
-  //     expect(res.body.username).toBe(data.username);
-  //     expect(res.body.email).toBe(data.email);
-  //   }
-  // });
+
   test("should retrieve all users", async () => {
     for (const data of testData) {
       await request(app).post("/user").send(data);
@@ -81,11 +73,13 @@ describe("User API Endpoints", () => {
   test("should update a user by ID", async () => {
     const createRes = await request(app).post("/user").send(testData[0]);
     const userId = createRes.body._id;
-    const updatedData = { username: "Updated Name", email: "updated@example.com" };
+    const updatedData = {
+      username: "Updated Name",
+      email: "updated@example.com",
+    };
     const res = await request(app).put(`/user/${userId}`).send(updatedData);
     expect(res.statusCode).toEqual(200);
     expect(res.body.username).toBe(updatedData.username);
     expect(res.body.email).toBe(updatedData.email);
-  }); 
-
+  });
 });
