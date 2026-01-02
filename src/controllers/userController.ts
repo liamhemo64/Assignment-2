@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { userModel, type IUser } from "../models/userModel.ts";
-import genericController from "./genericController.ts";
+import { userModel, type IUser } from "../models/userModel";
+import genericController from "./genericController";
 
 class UserController extends genericController<IUser> {
   constructor() {

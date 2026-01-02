@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import postController from "../controllers/postController.ts";
+import postController from "../controllers/postController";
 
 router.post("/", postController.create.bind(postController));
 router.delete("/:_id", postController.delete.bind(postController));

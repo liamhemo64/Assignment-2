@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import userController from "../controllers/userController.ts";
+import userController from "../controllers/userController";
 
 router.post("/", userController.create.bind(userController));
 router.delete("/:_id", userController.delete.bind(userController));
