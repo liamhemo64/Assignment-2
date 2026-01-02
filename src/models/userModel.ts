@@ -6,6 +6,7 @@ interface IUser {
   email: string;
   profileImage: string;
   password: string;
+  refreshTokens: string[];
 }
 
 const userSchema = new mongoose.Schema<IUser>({
@@ -26,6 +27,9 @@ const userSchema = new mongoose.Schema<IUser>({
     type: String,
     required: true,
   },
+  refreshTokens: {
+    type: [String],
+  }
 });
 
 const userModel = mongoose.model("user", userSchema);
