@@ -37,7 +37,7 @@ const generateUserTokens = (userId: string): Tokens => {
 
 }
  const register = async (req: Request, res: Response) => {
-    const { email, profileImage, password } = req.body;
+    const { email, profileImage, password, username } = req.body;
 
     if (!email || !password) {
         return sendError(res, "Email and password are required");
@@ -53,11 +53,13 @@ const generateUserTokens = (userId: string): Tokens => {
 
         const salt = await bcrypt.genSalt(10);
         const encryptedPassword = await bcrypt.hash(password, salt);
-        const userName = req.body.email.split('@')[0];
 
-        const user = await userModel.create({ userName, email, profileImage, password: encryptedPassword });
+        const user = await userModel.create({ username: username, email: email, profileImage: profileImage, password: encryptedPassword });
 
         const userTokens = generateUserTokens(user._id.toString());
+
+        user.refreshTokens = [userTokens.refreshToken];
+        await user.save();
 
         res.status(201).json(userTokens);
     } catch (error) {
@@ -85,11 +87,14 @@ const generateUserTokens = (userId: string): Tokens => {
 
         const userTokens = generateUserTokens(user._id.toString());
         
+        user.refreshTokens.push(userTokens.refreshToken);
+        await user.save();
+        
         res.status(200).send({
-            userName: user.username,
+            username: user.username,
             accessToken: userTokens.accessToken,
             refreshToken: userTokens.refreshToken,
-            profileImageUrl: user.profileImage,
+            profileImage: user.profileImage,
             _id: user._id,
         });
     } catch (error) {
@@ -108,7 +113,7 @@ const refreshToken = async (req: Request, res: Response) => {
         const secret: string = process.env.JWT_SECRET || "secretkey";
         const decoded: any = jwt.verify(refreshToken, secret);
 
-        const user = await userModel.findById(decoded.userId);
+        const user = await userModel.findById(decoded._id);
         if (!user) {
             return sendError(res, "Invalid refresh token");
         }
