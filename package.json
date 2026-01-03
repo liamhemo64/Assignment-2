@@ -9,7 +9,8 @@
     "dev": "nodemon src/index.ts",
     "test": "tsc && node --localstorage-file=./jest-ls.json node_modules/jest/bin/jest.js --runInBand --detectOpenHandles --forceExit",
     "testUsers": "tsc && node --coverage --localstorage-file=./jest-ls.json node_modules/jest/bin/jest.js --runInBand --detectOpenHandles --forceExit src/tests/users.test.ts",
-    "testComments": "tsc && node --coverage --localstorage-file=./jest-ls.json node_modules/jest/bin/jest.js --runInBand --detectOpenHandles --forceExit src/tests/comments.test.ts"
+    "testComments": "tsc && node --coverage --localstorage-file=./jest-ls.json node_modules/jest/bin/jest.js --runInBand --detectOpenHandles --forceExit src/tests/comments.test.ts",
+    "coverage": "tsc && node --localstorage-file=./jest-ls.json node_modules/jest/bin/jest.js --coverage --runInBand --detectOpenHandles --forceExit"
   },
   "author": "Anna and Li-am",
   "license": "ISC",

@@ -46,7 +46,6 @@ describe("Comment API Endpoints", () => {
     test("should create a new comment", () => __awaiter(void 0, void 0, void 0, function* () {
         for (const data of testData) {
             const res = yield (0, supertest_1.default)(app).post("/comment").send(data);
-            console.log(res.body);
             expect(res.statusCode).toEqual(201);
             expect(res.body).toHaveProperty("_id");
             expect(res.body.description).toBe(data.description);
