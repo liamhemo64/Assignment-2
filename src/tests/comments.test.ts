@@ -5,24 +5,24 @@ import { commentModel } from "../models/commentModel";
 import mongoose from "mongoose";
 
 type CommentData = {
-  postId: string;
+  relatedPostID: string;
   description: string;
   userCreatorID: string;
 };
 
 const testData: CommentData[] = [
   {
-    postId: "648a1f4e2f8fb814c8a1e1a1",
+    relatedPostID: "648a1f4e2f8fb814c8a1e1a1",
     description: "This is a test comment 1",
     userCreatorID: "507f1f77bcf86cd799439011",
   },
   {
-    postId: "648a1f4e2f8fb814c8a1e1a2",
+    relatedPostID: "648a1f4e2f8fb814c8a1e1a2",
     description: "This is a test comment 2",
     userCreatorID: "648a1f4e2f8fb814c8a1e1b2",
   },
   {
-    postId: "648a1f4e2f8fb814c8a1e1a3",
+    relatedPostID: "648a1f4e2f8fb814c8a1e1a3",
     description: "This is a test comment 3",
     userCreatorID: "648a1f4e2f8fb814c8a1e1b3",
   },
@@ -43,10 +43,11 @@ describe("Comment API Endpoints", () => {
   test("should create a new comment", async () => {
     for (const data of testData) {
       const res = await request(app).post("/comment").send(data);
+      console.log(res.body);
       expect(res.statusCode).toEqual(201);
       expect(res.body).toHaveProperty("_id");
       expect(res.body.description).toBe(data.description);
-      expect(res.body.relatedPostID).toBe(data.postId);
+      expect(res.body.relatedPostID).toBe(data.relatedPostID);
       expect(res.body.userCreatorID).toBe(data.userCreatorID);
     }
   });
@@ -64,11 +65,13 @@ describe("Comment API Endpoints", () => {
     for (const data of testData) {
       await request(app).post("/comment").send(data);
     }
-    const postId = testData[0].postId;
-    const res = await request(app).get(`/comment/post/${postId}`);
+    const relatedPostID = testData[0].relatedPostID;
+    const res = await request(app).get(
+      `/comment?relatedPostID=${relatedPostID}`
+    );
     expect(res.statusCode).toEqual(200);
     expect(res.body.length).toBe(1);
-    expect(res.body[0].relatedPostID).toBe(postId);
+    expect(res.body[0].relatedPostID).toBe(relatedPostID);
   });
 });
 

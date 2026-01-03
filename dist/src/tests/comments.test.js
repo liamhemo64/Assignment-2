@@ -17,17 +17,17 @@ const index_1 = __importDefault(require("../index"));
 const commentModel_1 = require("../models/commentModel");
 const testData = [
     {
-        postId: "648a1f4e2f8fb814c8a1e1a1",
+        relatedPostID: "648a1f4e2f8fb814c8a1e1a1",
         description: "This is a test comment 1",
         userCreatorID: "507f1f77bcf86cd799439011",
     },
     {
-        postId: "648a1f4e2f8fb814c8a1e1a2",
+        relatedPostID: "648a1f4e2f8fb814c8a1e1a2",
         description: "This is a test comment 2",
         userCreatorID: "648a1f4e2f8fb814c8a1e1b2",
     },
     {
-        postId: "648a1f4e2f8fb814c8a1e1a3",
+        relatedPostID: "648a1f4e2f8fb814c8a1e1a3",
         description: "This is a test comment 3",
         userCreatorID: "648a1f4e2f8fb814c8a1e1b3",
     },
@@ -46,10 +46,11 @@ describe("Comment API Endpoints", () => {
     test("should create a new comment", () => __awaiter(void 0, void 0, void 0, function* () {
         for (const data of testData) {
             const res = yield (0, supertest_1.default)(app).post("/comment").send(data);
+            console.log(res.body);
             expect(res.statusCode).toEqual(201);
             expect(res.body).toHaveProperty("_id");
             expect(res.body.description).toBe(data.description);
-            expect(res.body.relatedPostID).toBe(data.postId);
+            expect(res.body.relatedPostID).toBe(data.relatedPostID);
             expect(res.body.userCreatorID).toBe(data.userCreatorID);
         }
     }));
@@ -65,11 +66,11 @@ describe("Comment API Endpoints", () => {
         for (const data of testData) {
             yield (0, supertest_1.default)(app).post("/comment").send(data);
         }
-        const postId = testData[0].postId;
-        const res = yield (0, supertest_1.default)(app).get(`/comment/post/${postId}`);
+        const relatedPostID = testData[0].relatedPostID;
+        const res = yield (0, supertest_1.default)(app).get(`/comment?relatedPostID=${relatedPostID}`);
         expect(res.statusCode).toEqual(200);
         expect(res.body.length).toBe(1);
-        expect(res.body[0].relatedPostID).toBe(postId);
+        expect(res.body[0].relatedPostID).toBe(relatedPostID);
     }));
 });
 test("should update a comment by ID", () => __awaiter(void 0, void 0, void 0, function* () {
