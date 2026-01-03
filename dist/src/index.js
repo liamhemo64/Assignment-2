@@ -11,6 +11,7 @@ dotenv_1.default.config({ path: ".env.dev" });
 const postRoutes_1 = __importDefault(require("./routes/postRoutes"));
 const commentRoutes_1 = __importDefault(require("./routes/commentRoutes"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
+const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
 const app = (0, express_1.default)();
 const intApp = () => {
     return new Promise((resolve, reject) => {
@@ -19,6 +20,7 @@ const intApp = () => {
         app.use("/post", postRoutes_1.default);
         app.use("/comment", commentRoutes_1.default);
         app.use("/user", userRoutes_1.default);
+        app.use("/auth", authRoutes_1.default);
         const dbUri = process.env.MONGODB_URI;
         if (!dbUri) {
             console.error("MONGODB_URI is not defined in the environment variables.");

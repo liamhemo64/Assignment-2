@@ -3,22 +3,28 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
-    "start": "node index.ts",
-    "dev": "nodemon index.ts",
+    "start": "node src/index.ts",
+    "dev": "nodemon src/index.ts",
     "test": "tsc && jest --runInBand --detectOpenHandles --forceExit",
-    "testUsers": "tsc && node --localstorage-file=./jest-ls.json node_modules/jest/bin/jest.js --runInBand --detectOpenHandles --forceExit src/tests/users.test.ts"
+    "testUsers": "tsc && node --localstorage-file=./jest-ls.json node_modules/jest/bin/jest.js --runInBand --detectOpenHandles --forceExit src/tests/users.test.ts",
+    "testAuth": "tsc && node --localstorage-file=./jest-ls.json node_modules/jest/bin/jest.js --runInBand --detectOpenHandles --forceExit src/tests/auth.test.ts"
   },
   "author": "Anna and Li-am",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "jest": "^30.2.0",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^8.19.3"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/jest": "^30.0.0",
     "@types/supertest": "^6.0.3",
     "@typescript-eslint/eslint-plugin": "^8.48.1",
