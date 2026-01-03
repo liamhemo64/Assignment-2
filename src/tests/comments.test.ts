@@ -3,12 +3,7 @@ import intApp from "../index";
 import { Express } from "express";
 import { commentModel } from "../models/commentModel";
 import mongoose from "mongoose";
-
-type CommentData = {
-  relatedPostID: string;
-  description: string;
-  userCreatorID: string;
-};
+import { CommentData } from "./types/commentData.type";
 
 const testData: CommentData[] = [
   {
@@ -72,6 +67,15 @@ describe("Comment API Endpoints", () => {
     expect(res.body.length).toBe(1);
     expect(res.body[0].relatedPostID).toBe(relatedPostID);
   });
+});
+
+test("should retrieve a comment by ID", async () => {
+  const createRes = await request(app).post("/comment").send(testData[0]);
+  const commentId = createRes.body._id;
+  const res = await request(app).get(`/comment/${commentId}`);
+  expect(res.statusCode).toEqual(200);
+  expect(res.body._id).toBe(commentId);
+  expect(res.body.description).toBe(testData[0].description);
 });
 
 test("should update a comment by ID", async () => {

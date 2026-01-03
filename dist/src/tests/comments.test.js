@@ -72,6 +72,14 @@ describe("Comment API Endpoints", () => {
         expect(res.body[0].relatedPostID).toBe(relatedPostID);
     }));
 });
+test("should retrieve a comment by ID", () => __awaiter(void 0, void 0, void 0, function* () {
+    const createRes = yield (0, supertest_1.default)(app).post("/comment").send(testData[0]);
+    const commentId = createRes.body._id;
+    const res = yield (0, supertest_1.default)(app).get(`/comment/${commentId}`);
+    expect(res.statusCode).toEqual(200);
+    expect(res.body._id).toBe(commentId);
+    expect(res.body.description).toBe(testData[0].description);
+}));
 test("should update a comment by ID", () => __awaiter(void 0, void 0, void 0, function* () {
     const createRes = yield (0, supertest_1.default)(app).post("/comment").send(testData[0]);
     const commentId = createRes.body._id;
