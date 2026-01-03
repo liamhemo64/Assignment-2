@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import commentController from "../controllers/commentController.ts";
+import commentController from "../controllers/commentController";
 
 router.post("/", commentController.create.bind(commentController));
 router.delete("/:_id", commentController.delete.bind(commentController));

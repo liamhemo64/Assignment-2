@@ -80,7 +80,7 @@ Content-Type: application/json
 }
 
 ### Get a User by ID
-GET http://localhost:3000/user/694ea98f9601b7289e6190ee
+GET http://localhost:3000/user/69590fd18974fd6b3614707f
 Content-Type: application/json
 
 ### Get all Users
@@ -100,4 +100,43 @@ Content-Type: application/json
   "email": "liamhemo_updated@example.com",
   "profileImage": "http://example.com/images/liam_updated.jpg",
   "password": "newsecurepassword456"
+}
+
+### User Registration
+POST http://localhost:3000/auth/register 
+Content-Type: application/json
+
+{
+  "username": "annaeden",
+  "email": "annaeden@example.com",
+  "profileImage": "http://example.com/images/liam_updated.jpg",
+  "password": "mypassword"
+}
+
+
+### User Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "username": "annaeden",
+  "email": "annaeden@example.com",
+  "profileImage": "http://example.com/images/liam_updated.jpg",
+  "password": "mypassword"
+}
+
+### Refresh Token
+POST http://localhost:3000/auth/refresh-token
+Content-Type: application/json
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTU5MGZlYTg5NzRmZDZiMzYxNDcwODQiLCJyYW5kb20iOiIwLjA1MTk5MzU2MTA2MTY3NjQxIiwiaWF0IjoxNzY3NDQ0NDcwLCJleHAiOjE3Njc1MzA4NzB9.tprSqane2GBLk2RS1yxNf01E7gptW3IXEsk57jG0L6o"
+} 
+
+### User Logout
+POST http://localhost:3000/auth/logout
+Content-Type: application/json
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTU5MGZlYTg5NzRmZDZiMzYxNDcwODQiLCJyYW5kb20iOiIwLjg0NzM4NzAxNzYxMDI2NTYiLCJpYXQiOjE3Njc0NDQ0OTUsImV4cCI6MTc2NzUzMDg5NX0.PjcYFbcQq5UpA_giHdYZWySBiuuTFhiLqRu418_aO28"
 }

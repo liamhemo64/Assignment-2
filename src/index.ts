@@ -2,9 +2,10 @@ import express, { type Express } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config({ path: ".env.dev" });
-import postRoutes from "./routes/postRoutes.ts";
-import commentRoutes from "./routes/commentRoutes.ts";
-import userRoutes from "./routes/userRoutes.ts";
+import postRoutes from "./routes/postRoutes";
+import commentRoutes from "./routes/commentRoutes";
+import userRoutes from "./routes/userRoutes";
+import authRoutes from "./routes/authRoutes";
 
 const app = express();
 
@@ -16,6 +17,7 @@ const intApp = () => {
     app.use("/post", postRoutes);
     app.use("/comment", commentRoutes);
     app.use("/user", userRoutes);
+    app.use("/auth", authRoutes);
 
     const dbUri = process.env.MONGODB_URI;
     if (!dbUri) {
@@ -35,16 +37,17 @@ const intApp = () => {
 };
 
 const PORT = Number(process.env.PORT ?? 3000);
-
-intApp()
-  .then((app) => {
-    app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
+if (process.env.NODE_ENV !== "test") {
+  intApp()
+    .then((app) => {
+      app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+      });
+    })
+    .catch((err) => {
+      console.error("Failed to init app:", err);
+      process.exit(1);
     });
-  })
-  .catch((err) => {
-    console.error("Failed to init app:", err);
-    process.exit(1);
-  });
+}
 
 export default intApp;
