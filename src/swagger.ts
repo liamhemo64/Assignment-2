@@ -51,17 +51,28 @@ const options: swaggerJsdoc.Options = {
               format: "email",
               example: "john.doe@example.com",
             },
+            profileImage: {
+              type: "string",
+              description: "URL of the user's profile image",
+              example: "https://example.com/profile.jpg",
+            },
             password: {
               type: "string",
               description: "Password of the user",
               minLength: 6,
               example: "password123",
             },
+            refreshTokens: {
+              type: "array",
+              items: { type: "string" },
+              description: "Array of refresh tokens for the user",
+              example: ["token1", "token2"],
+            }
           },
         },
         Post: {
           type: "object",
-          required: ["content", "authorID"],
+          required: ["content", "userCreatorID"],
           properties: {
             _id: {
               type: "string",
@@ -73,9 +84,9 @@ const options: swaggerJsdoc.Options = {
               description: "Content of the post",
               example: "This is the content of my first post.",
             },
-            authorID: {
+            userCreatorID: {
               type: "string",
-              description: "ID of the author who created the post",
+              description: "ID of the user who created the post",
               example: "648a1f4e2f8fb814c8a1e1a1",
             },
           },
@@ -142,7 +153,7 @@ const options: swaggerJsdoc.Options = {
                   },
                   message: {
                     type: "string",
-                    example: "Invalid email format",
+                    example: "Invalid email or password",
                   },
                 },
               },
@@ -152,7 +163,7 @@ const options: swaggerJsdoc.Options = {
       },
       responses: {
         UnauthorizedError: {
-          description: "Access token is missing or invalid",
+          description: "Access or Refresh token is missing or invalid",
           content: {
             "application/json": {
               schema: {
@@ -197,7 +208,7 @@ const options: swaggerJsdoc.Options = {
                 $ref: "#/components/schemas/Error",
               },
               example: {
-                message: "Internal server error",
+                message: "An unknown error occurred",
                 status: 500,
               },
             },

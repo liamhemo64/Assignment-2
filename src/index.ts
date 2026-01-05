@@ -21,7 +21,7 @@ const intApp = () => {
       swaggerUi.setup(specs, {
         explorer: true,
         customCss: ".swagger-ui .topbar { display: none }",
-        customSiteTitle: "Movie & Comments API Documentation",
+        customSiteTitle: "Assignment 2 Server API Documentation",
       })
     );
 
