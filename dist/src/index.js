@@ -12,11 +12,21 @@ const postRoutes_1 = __importDefault(require("./routes/postRoutes"));
 const commentRoutes_1 = __importDefault(require("./routes/commentRoutes"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
+const swagger_1 = require("./swagger");
 const app = (0, express_1.default)();
 const intApp = () => {
     return new Promise((resolve, reject) => {
         app.use(express_1.default.urlencoded({ extended: false }));
         app.use(express_1.default.json());
+        app.use("/api-docs", swagger_1.swaggerUi.serve, swagger_1.swaggerUi.setup(swagger_1.specs, {
+            explorer: true,
+            customCss: ".swagger-ui .topbar { display: none }",
+            customSiteTitle: "Assignment 2 Server API Documentation",
+        }));
+        app.get("/api-docs.json", (req, res) => {
+            res.setHeader("Content-Type", "application/json");
+            res.send(swagger_1.specs);
+        });
         app.use("/post", postRoutes_1.default);
         app.use("/comment", commentRoutes_1.default);
         app.use("/user", userRoutes_1.default);
