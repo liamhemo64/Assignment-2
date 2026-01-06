@@ -6,6 +6,7 @@ import postRoutes from "./routes/postRoutes";
 import commentRoutes from "./routes/commentRoutes";
 import userRoutes from "./routes/userRoutes";
 import authRoutes from "./routes/authRoutes";
+import { specs, swaggerUi } from "./swagger";
 
 const app = express();
 
@@ -13,6 +14,21 @@ const intApp = () => {
   return new Promise<Express>((resolve, reject) => {
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
+
+    app.use(
+      "/api-docs",
+      swaggerUi.serve,
+      swaggerUi.setup(specs, {
+        explorer: true,
+        customCss: ".swagger-ui .topbar { display: none }",
+        customSiteTitle: "Assignment 2 Server API Documentation",
+      })
+    );
+
+    app.get("/api-docs.json", (req, res) => {
+      res.setHeader("Content-Type", "application/json");
+      res.send(specs);
+    });
 
     app.use("/post", postRoutes);
     app.use("/comment", commentRoutes);
