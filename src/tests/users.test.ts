@@ -2,12 +2,7 @@ import request from "supertest";
 import intApp from "../index";
 import { userModel } from "../models/userModel";
 import { Express } from "express";
-
-type UserData = {
-  username: string;
-  email: string;
-  password: string;
-};
+import { UserData } from "./types/userData.type";
 
 const testData: UserData[] = [
   {
