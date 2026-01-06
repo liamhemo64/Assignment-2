@@ -39,7 +39,7 @@ describe("Post API Endpoints", () => {
             for (const data of testData) {
             const res = await request(app).post("/post").send(data);
             expect(res.statusCode).toEqual(201);
-            expect(res.body).toHaveProperty("_id"); // Mongoose usually returns '_id', not 'id'
+            expect(res.body).toHaveProperty("_id");
             expect(res.body.content).toBe(data.content);
             expect(res.body.userCreatorID).toBe(data.userCreatorID);
             }
