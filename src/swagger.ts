@@ -117,9 +117,85 @@ const options: swaggerJsdoc.Options = {
             },
           },
         },
-
-        //Add schemas here of login etc.
-
+        LoginRequest: {
+                    type: "object",
+                    required: ["email", "password"],
+                    properties: {
+                        email: {
+                            type: "string",
+                            format: "email",
+                            example: "user@example.com",
+                        },
+                        password: {
+                            type: "string",
+                            example: "password123",
+                        },
+                    },
+                },
+                RegisterRequest: {
+                    type: "object",
+                    required: ["email", "password", "username", "profileImage"],
+                    properties: {
+                        email: {
+                            type: "string",
+                            format: "email",
+                            example: "user@example.com",
+                        },
+                        password: {
+                            type: "string",
+                            minLength: 6,
+                            example: "password123",
+                        },
+                        username: {
+                            type: "string",
+                            example: "john_doe",
+                        },
+                        profileImage: {
+                            type: "string",
+                            example: "https://example.com/profile.jpg",
+                        }
+                    },
+                },
+                logoutRequest: {
+                    type: "object",
+                    required: ["refreshToken"],
+                    properties: {
+                        refreshToken: {
+                            type: "string",
+                            description: "Refresh token to be invalidated",
+                            example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+                        },
+                    },
+                },
+                AuthResponse: {
+                    type: "object",
+                    properties: {
+                        accessToken: {
+                            type: "string",
+                            description: "JWT access token",
+                            example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+                        },
+                        refreshToken: {
+                            type: "string",
+                            description: "JWT refresh token",
+                            example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+                        },
+                        user: {
+                            $ref: "#/components/schemas/User",
+                        },
+                    },
+                },
+                RefreshTokenRequest: {
+                    type: "object",
+                    required: ["refreshToken"],
+                    properties: {
+                        refreshToken: {
+                            type: "string",
+                            description: "Valid refresh token",
+                            example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+                        },
+                    },
+                },
         Error: {
           type: "object",
           properties: {
