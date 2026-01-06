@@ -88,7 +88,7 @@ class genericController {
                     return res.status(404).json({ error: `Data with id ${id} not found` });
                 }
                 else {
-                    res.json(data);
+                    res.status(200).json(data);
                 }
             }
             catch (error) {
