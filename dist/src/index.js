@@ -8,9 +8,9 @@ const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config({ path: ".env.dev" });
-const postRoutes_1 = __importDefault(require("./routes/postRoutes"));
 const commentRoutes_1 = __importDefault(require("./routes/commentRoutes"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
+const postRoutes_1 = __importDefault(require("./routes/postRoutes"));
 const app = (0, express_1.default)();
 const intApp = () => {
     return new Promise((resolve, reject) => {

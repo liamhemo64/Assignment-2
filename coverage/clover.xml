@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1767436628118" clover="3.2.0">
-  <project timestamp="1767436628119" name="All files">
+<coverage generated="1767729082059" clover="3.2.0">
+  <project timestamp="1767729082059" name="All files">
     <metrics statements="138" coveredstatements="115" conditionals="40" coveredconditionals="15" methods="18" coveredmethods="14" elements="196" coveredelements="144" complexity="0" loc="138" ncloc="138" packages="4" files="11" classes="11"/>
     <package name="src">
       <metrics statements="32" coveredstatements="25" conditionals="8" coveredconditionals="5" methods="8" coveredmethods="4"/>
@@ -52,10 +52,10 @@
       <file name="genericController.ts" path="C:\Users\Li-am Hemo\Desktop\web assignments\assignment2\src\controllers\genericController.ts">
         <metrics statements="41" coveredstatements="29" conditionals="22" coveredconditionals="6" methods="6" coveredmethods="6"/>
         <line num="8" count="6" type="stmt"/>
-        <line num="12" count="19" type="stmt"/>
-        <line num="13" count="19" type="stmt"/>
-        <line num="14" count="19" type="stmt"/>
-        <line num="15" count="19" type="stmt"/>
+        <line num="12" count="20" type="stmt"/>
+        <line num="13" count="20" type="stmt"/>
+        <line num="14" count="20" type="stmt"/>
+        <line num="15" count="20" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
@@ -77,12 +77,12 @@
         <line num="60" count="0" type="stmt"/>
         <line num="62" count="0" type="stmt"/>
         <line num="65" count="0" type="stmt"/>
-        <line num="77" count="2" type="stmt"/>
-        <line num="78" count="2" type="stmt"/>
-        <line num="79" count="2" type="stmt"/>
-        <line num="80" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="77" count="3" type="stmt"/>
+        <line num="78" count="3" type="stmt"/>
+        <line num="79" count="3" type="stmt"/>
+        <line num="80" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="81" count="1" type="stmt"/>
-        <line num="83" count="1" type="stmt"/>
+        <line num="83" count="2" type="stmt"/>
         <line num="86" count="0" type="stmt"/>
         <line num="98" count="1" type="stmt"/>
         <line num="99" count="1" type="stmt"/>
